@@ -1,0 +1,33 @@
+version: '1'
+
+services:
+  nestjs-app:
+    build:
+      context: .
+      dockerfile: student-record-backend/Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres-db
+    environment:
+      DATABASE_HOST: postgres-db
+
+  postgres-db:
+    build:
+      context: .
+      dockerfile: DB/Dockerfile
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: muaz
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: student_record_dev
+
+  react-app:
+    build:
+      context: .
+      dockerfile: student-record-frontend/Dockerfile
+    ports:
+      - '5173:8080'
+    depends_on:
+      - nestjs-app
