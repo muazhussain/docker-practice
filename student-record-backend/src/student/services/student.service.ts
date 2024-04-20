@@ -55,7 +55,7 @@ export class StudentService {
                 throw new NotFoundException('Invalid Roll Number');
             }
             Object.assign(record, payload);
-            await this.studentRepo.update(record.id, record);
+            await this.studentRepo.update(record, record);
             return record;
         } catch (e) {
             throw e;
@@ -72,7 +72,7 @@ export class StudentService {
             if (!record) {
                 throw new NotFoundException('Invalid Roll Number');
             }
-            return await this.studentRepo.softDelete(record.id);
+            return await this.studentRepo.softDelete(record);
         } catch (e) {
             throw e;
         }

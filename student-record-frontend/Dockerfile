@@ -1,4 +1,4 @@
-FROM node:20-alpine AS build
+FROM node:21-alpine AS build
 
 WORKDIR /app
 
@@ -10,12 +10,6 @@ COPY . .
 
 RUN npm run build
 
-FROM node:20-alpine
-
-WORKDIR /app
-
-COPY --from=build /app/dist /usr/share/nginx/html
-
 EXPOSE 5173
 
-CMD ["npx", "serve", "-s", "build"]
+CMD ["npm", "run", "dev"]

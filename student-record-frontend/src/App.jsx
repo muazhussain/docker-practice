@@ -10,66 +10,68 @@ function App() {
   const [output, setOutput] = useState('');
 
   const handleAddStudent = () => {
-    fetch('http://localhost:3000/student', {
-      method: 'POST',
+    fetch(`${import.meta.env.VITE_API_URL}/student`, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: addName, roll: addRoll })
+      body: JSON.stringify({ name: addName, roll: addRoll }),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setOutput(`Name: ${data.data.name}, Roll: ${data.data.roll}`);
       })
-      .catch(error => {
-        console.error('Error adding student:', error);
+      .catch((error) => {
+        console.error("Error adding student:", error);
         setOutput(`Error adding student`);
       });
   };
 
   const handleGetStudentName = () => {
-    fetch(`http://localhost:3000/student/${getRoll}`)
-      .then(response => response.json())
-      .then(data => {
+    fetch(`${import.meta.env.VITE_API_URL}/student/${getRoll}`)
+      .then((response) => response.json())
+      .then((data) => {
         setOutput(`Name: ${data.data.name}`);
       })
-      .catch(error => {
-        console.error('Error fetching student name:', error);
+      .catch((error) => {
+        console.error("Error fetching student name:", error);
         setOutput(`Error fetching student name.`);
       });
   };
 
   const handleUpdateStudentName = () => {
-    fetch(`http://localhost:3000/student/${updateRoll}`, {
-      method: 'PATCH',
+    fetch(`${import.meta.env.VITE_API_URL}/student/${updateRoll}`, {
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: updateName })
+      body: JSON.stringify({ name: updateName }),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setOutput(`Name: ${data.data.name}`);
       })
-      .catch(error => {
-        console.error('Error updating student name:', error);
+      .catch((error) => {
+        console.error("Error updating student name:", error);
         setOutput(`Error updating student name.`);
       });
   };
 
   const handleDeleteStudent = () => {
-    fetch(`http://localhost:3000/student/${deleteRoll}`, {
-      method: 'DELETE'
+    fetch(`${import.meta.env.VITE_API_URL}/student/${deleteRoll}`, {
+      method: "DELETE",
     })
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
-          setOutput(`Student with roll number ${deleteRoll} deleted successfully!`);
+          setOutput(
+            `Student with roll number ${deleteRoll} deleted successfully!`
+          );
         } else {
-          throw new Error('Error deleting student.');
+          throw new Error("Error deleting student.");
         }
       })
-      .catch(error => {
-        console.error('Error deleting student:', error);
+      .catch((error) => {
+        console.error("Error deleting student:", error);
         setOutput(`Error deleting student.`);
       });
   };
