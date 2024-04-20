@@ -1,17 +1,13 @@
-import {
-    Column,
-    Entity,
-    PrimaryGeneratedColumn,
-} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity('student')
 export class StudentEntity {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column()
+    @Column({ type: 'int' })
     roll: number;
 
-    @Column()
+    @Column({ type: 'varchar' })
     name: string;
 }
