@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { StudentEntity } from '../entity/student.entity';
-import { DeleteResult, Repository } from 'typeorm';
 import { CreateStudentRecordDto } from '../dtos/create-student-record.dto';
 import { UpdateStudentRecordDto } from '../dtos/update-student-record.dto';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class StudentService {
@@ -62,7 +62,7 @@ export class StudentService {
         }
     }
 
-    async deleteRecord(roll: number): Promise<DeleteResult> {
+    async deleteRecord(roll: number) {
         try {
             const record = await this.studentRepo.findOne({
                 where: {
