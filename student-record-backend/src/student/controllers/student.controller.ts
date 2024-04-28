@@ -15,7 +15,6 @@ export class StudentController {
     @Post()
     async createStudentRecord(@Body() payload: CreateStudentRecordDto) {
         try {
-            console.log('payload: ', payload);
             const res = await this.studentService.createStudentRecord(payload);
             return commonResponse(true, 'Create Student Record Successfully', res);
         } catch (e) {

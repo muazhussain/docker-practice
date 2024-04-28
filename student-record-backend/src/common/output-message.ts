@@ -2,7 +2,6 @@ import { HttpStatus, HttpException } from "@nestjs/common";
 
 export function commonResponse(success: boolean, message: string, payload: any = null) {
     if (success) {
-        console.log(payload);
         return { success, message, data: payload };
     } else {
         let httpStatus = HttpStatus.BAD_REQUEST;

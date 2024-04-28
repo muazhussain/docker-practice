@@ -10,7 +10,7 @@ function App() {
   const [output, setOutput] = useState('');
 
   const handleAddStudent = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/student`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/student`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ function App() {
   };
 
   const handleGetStudentName = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/student/${getRoll}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/student/${getRoll}`)
       .then((response) => response.json())
       .then((data) => {
         setOutput(`Name: ${data.data.name}`);
@@ -40,7 +40,7 @@ function App() {
   };
 
   const handleUpdateStudentName = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/student/${updateRoll}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/student/${updateRoll}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ function App() {
   };
 
   const handleDeleteStudent = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/student/${deleteRoll}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/student/${deleteRoll}`, {
       method: "DELETE",
     })
       .then((response) => {

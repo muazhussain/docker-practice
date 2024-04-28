@@ -4,7 +4,9 @@ services:
       context: reverse-proxy
       dockerfile: Dockerfile
     ports:
-      - '3000:3000'
+      - '3000:80'
+    depends_on:
+      - nestjs-app
 
   nestjs-app:
     build:
@@ -13,11 +15,12 @@ services:
     ports:
       - '3001:3001'
     depends_on:
-      - reverse-proxy
       - mysql_db
 
   mysql_db:
-    image: mysql
+    build:
+      context: mysql-db
+      dockerfile: Dockerfile
     ports:
       - 3307:3307
     environment:
