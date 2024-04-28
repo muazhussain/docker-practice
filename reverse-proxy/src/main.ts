@@ -7,7 +7,7 @@ async function bootstrap() {
   }
   );
   app.enableCors({ exposedHeaders: ['Content-Disposition'] });
-  await app.listen(3001);
-  console.log(`API server is running at 3001 🚀`);
+  await app.listen(3000);
+  console.log(`API server is running at 3000 🚀 on DEV`);
 }
 bootstrap();
